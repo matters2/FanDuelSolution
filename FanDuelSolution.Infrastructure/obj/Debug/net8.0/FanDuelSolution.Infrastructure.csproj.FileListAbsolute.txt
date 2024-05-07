@@ -1,0 +1,15 @@
+D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Infrastructure\obj\Debug\net8.0\FanDuelSolution.Infrastructure.csproj.AssemblyReference.cache
+D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Infrastructure\obj\Debug\net8.0\FanDuelSolution.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Infrastructure\obj\Debug\net8.0\FanDuelSolution.Infrastructure.AssemblyInfoInputs.cache
+D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Infrastructure\obj\Debug\net8.0\FanDuelSolution.Infrastructure.AssemblyInfo.cs
+D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Infrastructure\obj\Debug\net8.0\FanDuelSolution.Infrastructure.csproj.CoreCompileInputs.cache
+D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Infrastructure\bin\Debug\net8.0\FanDuelSolution.Infrastructure.deps.json
+D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Infrastructure\bin\Debug\net8.0\FanDuelSolution.Infrastructure.dll
+D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Infrastructure\bin\Debug\net8.0\FanDuelSolution.Infrastructure.pdb
+D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Infrastructure\bin\Debug\net8.0\FanDuelSolution.Application.dll
+D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Infrastructure\bin\Debug\net8.0\FanDuelSolution.Application.pdb
+D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Infrastructure\obj\Debug\net8.0\FanDuelSolution.Infrastructure.csproj.CopyComplete
+D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Infrastructure\obj\Debug\net8.0\FanDuelSolution.Infrastructure.dll
+D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Infrastructure\obj\Debug\net8.0\refint\FanDuelSolution.Infrastructure.dll
+D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Infrastructure\obj\Debug\net8.0\FanDuelSolution.Infrastructure.pdb
+D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Infrastructure\obj\Debug\net8.0\ref\FanDuelSolution.Infrastructure.dll

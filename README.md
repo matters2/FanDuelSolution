@@ -44,6 +44,11 @@ Note: Players can be listed on the depth chart for multiple positions.
 
 - Prints out the full depth chart with every position on the team and every player within the depth chart.
 
+## Assumptions
+
+- No application state required (no CRUD operations on hosted database available), using In Memory solution for the life of the application instance
+- No Front-end application to integrate with the API
+
 ## Technology Used
 
 - Framework: .NET Core 8

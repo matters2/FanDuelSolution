@@ -33,7 +33,7 @@ public class RemovePlayerDepthChartCommandHandlerUnitTests
     {
         //arrange
         _mockPlayerRepository
-            .Setup(c => c.RemovePlayerFromDepthChart(expectedCommand.Position, expectedCommand.Player))
+            .Setup(c => c.RemovePlayerFromDepthChart(expectedCommand.Player))
             .Returns(expectedResponse);
 
         var handler = new RemovePlayerDepthChartCommandHandler(_mockPlayerRepository.Object, _mockLogger.Object);
@@ -53,7 +53,7 @@ public class RemovePlayerDepthChartCommandHandlerUnitTests
     {
         //arrange
         _mockPlayerRepository
-            .Setup(c => c.RemovePlayerFromDepthChart(expectedCommand.Position, expectedCommand.Player))
+            .Setup(c => c.RemovePlayerFromDepthChart(expectedCommand.Player))
             .Throws(expectedException);
 
         var handler = new RemovePlayerDepthChartCommandHandler(_mockPlayerRepository.Object, _mockLogger.Object);
@@ -75,7 +75,7 @@ public class RemovePlayerDepthChartCommandHandlerUnitTests
         var expectedMessage = $"Failed to RemovePlayerDepthChartCommand for Player Number: {expectedCommand.Player?.Number}, Player Name: {expectedCommand.Player?.Name}";
 
         _mockPlayerRepository
-            .Setup(c => c.RemovePlayerFromDepthChart(expectedCommand.Position, expectedCommand.Player))
+            .Setup(c => c.RemovePlayerFromDepthChart(expectedCommand.Player))
             .Throws(expectedException);
 
         var handler = new RemovePlayerDepthChartCommandHandler(_mockPlayerRepository.Object, _mockLogger.Object);

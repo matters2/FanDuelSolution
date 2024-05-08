@@ -75,14 +75,16 @@ public class PlayerRepository : IPlayerRepository
         return sb.ToString();
     }
 
-    public List<Player> GetBackups(string position, Player player)
+    public List<Player> GetBackups(Player player)
     {
-        if (!_depthChartNFL.ContainsKey(position))
+        var position = player.Position;
+
+        if (string.IsNullOrEmpty(position) || !_depthChartNFL.ContainsKey(position))
         {
-            throw new Exception($"Position backsups do not exist for Position: {position}");
+            throw new Exception($"Position backsups do not exist for given Position: {position}");
         }
 
-        var playersList = _depthChartNFL[position];
+        var playersList = _depthChartNFL[player.Position];
           
         var playerForBackups = playersList.FirstOrDefault(p => p.Number == player.Number);
 
@@ -92,7 +94,7 @@ public class PlayerRepository : IPlayerRepository
             return new();
         }
 
-        var playerPositionIndex = playersList.IndexOf(player);
+        var playerPositionIndex = playersList.FindIndex(p => p.Number == player.Number);
 
         var playerBackupsList = new List<Player>();
 
@@ -105,10 +107,12 @@ public class PlayerRepository : IPlayerRepository
         return playerBackupsList;
     }
 
-    public void AddPlayerToDepthChart(string position, Player player, int? positionDepth)
+    public void AddPlayerToDepthChart(Player player, int? positionDepth)
     {
+        var position = player.Position;
+
         //scenario 1 - position does not exist in dict, add
-        if (!_depthChartNFL.ContainsKey(position))
+        if (!string.IsNullOrEmpty(position) && !_depthChartNFL.ContainsKey(position))
         {
             _depthChartNFL.Add(position, new List<Player>() { player });
 
@@ -118,7 +122,15 @@ public class PlayerRepository : IPlayerRepository
         var playersForPosition = _depthChartNFL[position];
         var playersForPositionDepthCount = playersForPosition.Count;
 
-        //scenario 2 - position exists, no position depth provided or position depth less than 1 or position depth last, goes to the end
+        //scenario 2 - player being added already exists for given position, primary key player number
+        var playerExistsInPosition = playersForPosition.Any(p => p.Number == player.Number);
+
+        if (playerExistsInPosition)
+        {
+            throw new Exception($"Player Number: {player.Number}, Player Name: {player.Name} already exists in Depth Chart For Position {position}");
+        }
+
+        //scenario 3 - position exists, no position depth provided or position depth less than 1 or position depth last, goes to the end
         if (!positionDepth.HasValue ||
             positionDepth.HasValue && positionDepth <= 0 ||
             positionDepth.HasValue && positionDepth > playersForPositionDepthCount + 1 ||
@@ -126,11 +138,11 @@ public class PlayerRepository : IPlayerRepository
         {
             playersForPosition.Add(player);
         }
-        else if (positionDepth <= playersForPositionDepthCount) //scenario 3 - position depth provided, insert 
+        else if (positionDepth <= playersForPositionDepthCount) //scenario 4 - position depth provided, insert 
         {
             playersForPosition.Insert(positionDepth.Value - 1, player);
         }
-        else // scenario 4 - invalid
+        else // scenario 5 - invalid
         {
             throw new Exception($"Unable to add Player Number: {player.Number}, Player Name: {player.Name}");
         }
@@ -140,9 +152,11 @@ public class PlayerRepository : IPlayerRepository
         return;
     }
 
-    public List<Player> RemovePlayerFromDepthChart(string position, Player player)
+    public List<Player> RemovePlayerFromDepthChart(Player player)
     {
-        if (!_depthChartNFL.ContainsKey(position))
+        var position = player.Position;
+
+        if (string.IsNullOrEmpty(position) || !_depthChartNFL.ContainsKey(position))
         {
             throw new Exception($"Position: {position} for player removal does not exist in the depth chart");
         }

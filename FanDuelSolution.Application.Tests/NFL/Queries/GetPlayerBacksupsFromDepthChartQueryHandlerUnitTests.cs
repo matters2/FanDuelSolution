@@ -33,7 +33,7 @@ public class GetPlayerBacksupsFromDepthChartQueryHandlerUnitTests
     {
         //arrange
         _mockPlayerRepository
-            .Setup(c => c.GetBackups(expectedQuery.Position, expectedQuery.Player))
+            .Setup(c => c.GetBackups(expectedQuery.Player))
             .Returns(expectedResponse);
 
         var handler = new GetPlayerBackupsFromDepthChartQueryHandler(_mockPlayerRepository.Object, _mockLogger.Object);
@@ -53,7 +53,7 @@ public class GetPlayerBacksupsFromDepthChartQueryHandlerUnitTests
     {
         //arrange
         _mockPlayerRepository
-            .Setup(c => c.GetBackups(expectedQuery.Position, expectedQuery.Player))
+            .Setup(c => c.GetBackups(expectedQuery.Player))
             .Throws(expectedException);
 
         var handler = new GetPlayerBackupsFromDepthChartQueryHandler(_mockPlayerRepository.Object, _mockLogger.Object);
@@ -75,7 +75,7 @@ public class GetPlayerBacksupsFromDepthChartQueryHandlerUnitTests
         var expectedMessage = $"Failed to GetPlayerBackupsFromDepthChartQuery for Player Number: {expectedQuery.Player.Number}, Player Name: {expectedQuery.Player?.Name}";
 
         _mockPlayerRepository
-            .Setup(c => c.GetBackups(expectedQuery.Position, expectedQuery.Player))
+            .Setup(c => c.GetBackups(expectedQuery.Player))
             .Throws(expectedException);
 
         var handler = new GetPlayerBackupsFromDepthChartQueryHandler(_mockPlayerRepository.Object, _mockLogger.Object);

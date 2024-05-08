@@ -10,3 +10,16 @@ D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Application\ob
 D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Application\obj\Debug\net8.0\refint\FanDuelSolution.Application.dll
 D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Application\obj\Debug\net8.0\FanDuelSolution.Application.pdb
 D:\7. Programming\Projects\FanDuelSolution.WebApi\FanDuelSolution.Application\obj\Debug\net8.0\ref\FanDuelSolution.Application.dll
+D:\7. Programming\Projects\FanDuelSolution\FanDuelSolution.Application\bin\Debug\net8.0\FanDuelSolution.Application.deps.json
+D:\7. Programming\Projects\FanDuelSolution\FanDuelSolution.Application\bin\Debug\net8.0\FanDuelSolution.Application.dll
+D:\7. Programming\Projects\FanDuelSolution\FanDuelSolution.Application\bin\Debug\net8.0\FanDuelSolution.Application.pdb
+D:\7. Programming\Projects\FanDuelSolution\FanDuelSolution.Application\obj\Debug\net8.0\FanDuelSolution.Application.csproj.AssemblyReference.cache
+D:\7. Programming\Projects\FanDuelSolution\FanDuelSolution.Application\obj\Debug\net8.0\FanDuelSolution.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\7. Programming\Projects\FanDuelSolution\FanDuelSolution.Application\obj\Debug\net8.0\FanDuelSolution.Application.AssemblyInfoInputs.cache
+D:\7. Programming\Projects\FanDuelSolution\FanDuelSolution.Application\obj\Debug\net8.0\FanDuelSolution.Application.AssemblyInfo.cs
+D:\7. Programming\Projects\FanDuelSolution\FanDuelSolution.Application\obj\Debug\net8.0\FanDuelSolution.Application.csproj.CoreCompileInputs.cache
+D:\7. Programming\Projects\FanDuelSolution\FanDuelSolution.Application\obj\Debug\net8.0\FanDuelSolution.Application.sourcelink.json
+D:\7. Programming\Projects\FanDuelSolution\FanDuelSolution.Application\obj\Debug\net8.0\FanDuelSolution.Application.dll
+D:\7. Programming\Projects\FanDuelSolution\FanDuelSolution.Application\obj\Debug\net8.0\refint\FanDuelSolution.Application.dll
+D:\7. Programming\Projects\FanDuelSolution\FanDuelSolution.Application\obj\Debug\net8.0\FanDuelSolution.Application.pdb
+D:\7. Programming\Projects\FanDuelSolution\FanDuelSolution.Application\obj\Debug\net8.0\ref\FanDuelSolution.Application.dll

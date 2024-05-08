@@ -4,6 +4,7 @@ using AutoFixture.Xunit2;
 using FanDuelSolution.Application.NFL.Models;
 using FanDuelSolution.Infrastructure.InMemory;
 using FluentAssertions;
+using System.Numerics;
 using Xunit;
 
 namespace FanDuelSolution.Infrastructure.Tests.NFL.Repositories;
@@ -32,7 +33,6 @@ public class PlayerRepositoryUnitTests
 
     [Theory, AutoData]
     public void RemovePlayerFromDepthChart_WhenPositionNotFound_ThrowsException(
-        string expectedPosition,
         Player expectedPlayer
         )
     {
@@ -40,15 +40,14 @@ public class PlayerRepositoryUnitTests
         var rut = new PlayerRepository();
 
         //act
-        var act = () => rut.RemovePlayerFromDepthChart(expectedPosition, expectedPlayer);
+        var act = () => rut.RemovePlayerFromDepthChart(expectedPlayer);
 
         //assert
-        act.Should().Throw<Exception>().WithMessage($"Position: {expectedPosition} for player removal does not exist in the depth chart");
+        act.Should().Throw<Exception>().WithMessage($"Position: {expectedPlayer.Position} for player removal does not exist in the depth chart");
     }
 
     [Theory, AutoData]
     public void RemovePlayerFromDepthChart_PlayerNotFound_ReturnsEmptyList(
-        string expectedPosition,
         Player expectedMissingPlayer,
         Player expectedPlayer,
         int expectedPlayerPositionDepth
@@ -56,10 +55,10 @@ public class PlayerRepositoryUnitTests
     {
         //arrange
         var rut = new PlayerRepository();
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayer, expectedPlayerPositionDepth);
+        rut.AddPlayerToDepthChart(expectedPlayer, expectedPlayerPositionDepth);
 
         //act
-        var result = rut.RemovePlayerFromDepthChart(expectedPosition, expectedMissingPlayer);
+        var result = rut.RemovePlayerFromDepthChart(expectedMissingPlayer);
 
         //assert
         result.Should().BeEmpty();
@@ -67,7 +66,6 @@ public class PlayerRepositoryUnitTests
 
     [Theory, AutoData]
     public void RemovePlayerFromDepthChart_PlayerFound_ReturnsExpectedPlayer(
-        string expectedPosition,
         Player expectedPlayer,
         int expectedPlayerPositionDepth
         )
@@ -76,10 +74,10 @@ public class PlayerRepositoryUnitTests
         var expectedPlayerList = new List<Player>() { expectedPlayer };
 
         var rut = new PlayerRepository();
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayer, expectedPlayerPositionDepth);
+        rut.AddPlayerToDepthChart(expectedPlayer, expectedPlayerPositionDepth);
 
         //act
-        var result = rut.RemovePlayerFromDepthChart(expectedPosition, expectedPlayer);
+        var result = rut.RemovePlayerFromDepthChart(expectedPlayer);
 
         //assert
         result.Should().BeEquivalentTo(expectedPlayerList);
@@ -87,7 +85,6 @@ public class PlayerRepositoryUnitTests
 
     [Theory, AutoData]
     public void GetBackups_WhenPositionNotFound_ThrowsException(
-        string expectedPosition,
         Player expectedPlayer
         )
     {
@@ -95,10 +92,10 @@ public class PlayerRepositoryUnitTests
         var rut = new PlayerRepository();
 
         //act
-        var act = () => rut.GetBackups(expectedPosition, expectedPlayer);
+        var act = () => rut.GetBackups(expectedPlayer);
 
         //assert
-        act.Should().Throw<Exception>().WithMessage($"Position backsups do not exist for Position: {expectedPosition}");
+        act.Should().Throw<Exception>().WithMessage($"Position backsups do not exist for given Position: {expectedPlayer.Position}");
     }
 
     [Theory, AutoData]
@@ -110,10 +107,10 @@ public class PlayerRepositoryUnitTests
     {
         //arrange
         var rut = new PlayerRepository();
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayer, expectedPlayerPositionDepth);
+        rut.AddPlayerToDepthChart(expectedPlayer, expectedPlayerPositionDepth);
 
         //act
-        var result = rut.GetBackups(expectedPosition, expectedPlayer);
+        var result = rut.GetBackups(expectedPlayer);
 
         //assert
         result.Should().BeEmpty();
@@ -121,7 +118,6 @@ public class PlayerRepositoryUnitTests
 
     [Theory, AutoData]
     public void GetBackups_WhenFiveBacksupsExist_WithPositionDepthThree_ReturnsExpectedBackupListOfTwo(
-        string expectedPosition,
         Player expectedPlayerOne,
         Player expectedPlayerTwo,
         Player expectedPlayerThree,
@@ -131,22 +127,21 @@ public class PlayerRepositoryUnitTests
     {
         //arrange
         var rut = new PlayerRepository();
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayerOne, null);
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayerTwo, null);
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayerThree, null);
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayerFour, null);
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayer, 3);
+        rut.AddPlayerToDepthChart(expectedPlayerOne, null);
+        rut.AddPlayerToDepthChart(expectedPlayerTwo, null);
+        rut.AddPlayerToDepthChart(expectedPlayerThree, null);
+        rut.AddPlayerToDepthChart(expectedPlayerFour, null);
+        rut.AddPlayerToDepthChart(expectedPlayer, 3);
 
         //act
-        var result = rut.GetBackups(expectedPosition, expectedPlayer);
+        var result = rut.GetBackups(expectedPlayer);
 
         //assert
         result.Count().Should().Be(2);
     }
 
     [Theory, AutoData]
-    public void AddPlayerToDepthChart_WhenPositionDoesNotExist_AddsPlayerToEnd(
-        string expectedPosition,
+    public void AddPlayerToDepthChart_WhenPositionDoesNotExist_AddsPlayerToDepthChart(
         Player expectedPlayer,
         int expectedPlayerPositionDepth
         )
@@ -155,12 +150,12 @@ public class PlayerRepositoryUnitTests
         var rut = new PlayerRepository();
 
         //act
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayer, expectedPlayerPositionDepth);
+        rut.AddPlayerToDepthChart(expectedPlayer, expectedPlayerPositionDepth);
 
         //assert
         rut.DepthChartNFL
             .Should()
-            .ContainKey(expectedPosition)
+            .ContainKey(expectedPlayer.Position)
             .WhoseValue
             .Should()
             .Contain(expectedPlayer);
@@ -168,7 +163,6 @@ public class PlayerRepositoryUnitTests
 
     [Theory, AutoData]
     public void AddPlayerToDepthChart_NoPositionDepthGiven_AddsPlayerToEnd(
-        string expectedPosition,
         Player expectedPlayer,
         Player expectedPlayerOne,
         Player expectedPlayerTwo,
@@ -178,16 +172,16 @@ public class PlayerRepositoryUnitTests
         //arrange
         var rut = new PlayerRepository();
 
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayerOne, null);
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayerTwo, null);
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayerThree, null);
+        rut.AddPlayerToDepthChart(expectedPlayerOne, null);
+        rut.AddPlayerToDepthChart(expectedPlayerTwo, null);
+        rut.AddPlayerToDepthChart(expectedPlayerThree, null);
 
         var expectedPlayerPositionDepth = 0;
 
         //act
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayer, expectedPlayerPositionDepth);
+        rut.AddPlayerToDepthChart(expectedPlayer, expectedPlayerPositionDepth);
 
-        var result = rut.DepthChartNFL[expectedPosition];
+        var result = rut.DepthChartNFL[expectedPlayer.Position];
 
         //assert
         result.Last().Should().Be(expectedPlayer);
@@ -195,7 +189,6 @@ public class PlayerRepositoryUnitTests
 
     [Theory, AutoData]
     public void AddPlayerToDepthChart_PositionDepthLast_AddsPlayerToEnd(
-        string expectedPosition,
         Player expectedPlayer,
         Player expectedPlayerOne,
         Player expectedPlayerTwo,
@@ -205,16 +198,16 @@ public class PlayerRepositoryUnitTests
         //arrange
         var rut = new PlayerRepository();
 
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayerOne, null);
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayerTwo, 1);
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayerThree, 2);
+        rut.AddPlayerToDepthChart(expectedPlayerOne, null);
+        rut.AddPlayerToDepthChart(expectedPlayerTwo, 1);
+        rut.AddPlayerToDepthChart(expectedPlayerThree, 2);
 
         var expectedPlayerPositionDepth = 4;
 
         //act
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayer, expectedPlayerPositionDepth);
+        rut.AddPlayerToDepthChart(expectedPlayer, expectedPlayerPositionDepth);
 
-        var result = rut.DepthChartNFL[expectedPosition];
+        var result = rut.DepthChartNFL[expectedPlayer.Position];
 
         //assert
         result.Last().Should().Be(expectedPlayer);
@@ -222,7 +215,6 @@ public class PlayerRepositoryUnitTests
 
     [Theory, AutoData]
     public void AddPlayerToDepthChart_WithValidPositionDepth_InsertsPlayerAtCorrectPosition(
-        string expectedPosition,
         Player expectedPlayer,
         Player expectedPlayerOne,
         Player expectedPlayerTwo,
@@ -232,18 +224,34 @@ public class PlayerRepositoryUnitTests
         //arrange
         var rut = new PlayerRepository();
 
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayerOne, null);
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayerTwo, null);
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayerThree, null);
+        rut.AddPlayerToDepthChart(expectedPlayerOne, null);
+        rut.AddPlayerToDepthChart(expectedPlayerTwo, null);
+        rut.AddPlayerToDepthChart(expectedPlayerThree, null);
 
         var expectedPlayerPositionDepth = 1;
 
         //act
-        rut.AddPlayerToDepthChart(expectedPosition, expectedPlayer, expectedPlayerPositionDepth);
+        rut.AddPlayerToDepthChart(expectedPlayer, expectedPlayerPositionDepth);
 
-        var result = rut.DepthChartNFL[expectedPosition];
+        var result = rut.DepthChartNFL[expectedPlayer.Position];
 
         //assert
         result.First().Should().Be(expectedPlayer);
+    }
+
+    [Theory, AutoData]
+    public void AddPlayerToDepthChart_PlayerAlreadyExistsInPosition_ThrowsException(Player expectedPlayer
+        )
+    {
+        //arrange
+        var rut = new PlayerRepository();
+
+        rut.AddPlayerToDepthChart(expectedPlayer, null);
+
+        //act
+        var act = () => rut.AddPlayerToDepthChart(expectedPlayer, null);
+
+        //assert
+        act.Should().Throw<Exception>().WithMessage($"Player Number: {expectedPlayer.Number}, Player Name: {expectedPlayer.Name} already exists in Depth Chart For Position {expectedPlayer.Position}");
     }
 }

@@ -7,7 +7,6 @@ namespace FanDuelSolution.Application.NFL.Commands;
 
 public class AddPlayerToDepthChartCommand : IRequest<bool>
 {
-    public string Position { get; set; } = string.Empty;
     public Player Player { get; set; } = new();
 
     //Per question, member is nullable
@@ -29,7 +28,7 @@ public class AddPlayerToDepthChartCommandHandler : IRequestHandler<AddPlayerToDe
     {
         try
         {
-            _playerRepository.AddPlayerToDepthChart(command.Position, command.Player, command.PositionDepth);
+            _playerRepository.AddPlayerToDepthChart(command.Player, command.PositionDepth);
         }
         catch (Exception ex)
         {

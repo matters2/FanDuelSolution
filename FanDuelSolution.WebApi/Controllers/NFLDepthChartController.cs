@@ -28,7 +28,7 @@ public class NFLDepthChartController : ControllerBase
 
     [HttpGet("GetPlayerBackupsFromDepthChart")]
     [ProducesResponseType(typeof(List<Player>), (int)HttpStatusCode.OK)]
-    public async Task<IActionResult> GetPlayerBackupsFromDepthChartAsync([FromBody] GetPlayerBackupsFromDepthChartQuery query)
+    public async Task<IActionResult> GetPlayerBackupsFromDepthChartAsync([FromQuery] GetPlayerBackupsFromDepthChartQuery query)
     {
         var response = await _mediator.Send(query);
         return Ok(response);

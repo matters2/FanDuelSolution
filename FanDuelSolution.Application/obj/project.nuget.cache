@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RDmHaSbMDShzzp5LbLMRcGplefNr5cosjnxP3FhzmEIOv1GjRHo/7F9BBRPm8bsdCqkSpkpJWWvdU2SHeEchnQ==",
+  "dgSpecHash": "6Jhx7vR46xMbXJoORemR205Gp9UMqlBtEaVvsupmVC3mDDdwtaSaVKHnEWZ5xcHfN0me2boeslrAGzpM9a5sZw==",
   "success": true,
-  "projectFilePath": "D:\\7. Programming\\Projects\\FanDuelSolution.WebApi\\FanDuelSolution.Application\\FanDuelSolution.Application.csproj",
+  "projectFilePath": "D:\\7. Programming\\Projects\\FanDuelSolution\\FanDuelSolution.Application\\FanDuelSolution.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",

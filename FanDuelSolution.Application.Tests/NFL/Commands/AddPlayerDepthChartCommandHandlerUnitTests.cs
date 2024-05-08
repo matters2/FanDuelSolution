@@ -45,7 +45,7 @@ namespace FanDuelSolution.Application.Tests.NFL.Commands
         {
             //arrange
             _mockPlayerRepository
-                .Setup(c => c.AddPlayerToDepthChart(expectedCommand.Position, expectedCommand.Player, expectedCommand.PositionDepth))
+                .Setup(c => c.AddPlayerToDepthChart(expectedCommand.Player, expectedCommand.PositionDepth))
                 .Throws(expectedException);
 
             var handler = new AddPlayerToDepthChartCommandHandler(_mockPlayerRepository.Object, _mockLogger.Object);
@@ -67,7 +67,7 @@ namespace FanDuelSolution.Application.Tests.NFL.Commands
             var expectedMessage = $"Failed to AddPlayerToDepthChart for Player Number: {expectedCommand.Player.Number}, Player Name: {expectedCommand.Player?.Name}";
 
             _mockPlayerRepository
-                .Setup(c => c.AddPlayerToDepthChart(expectedCommand.Position, expectedCommand.Player, expectedCommand.PositionDepth))
+                .Setup(c => c.AddPlayerToDepthChart(expectedCommand.Player, expectedCommand.PositionDepth))
                 .Throws(expectedException);
 
             var handler = new AddPlayerToDepthChartCommandHandler(_mockPlayerRepository.Object, _mockLogger.Object);

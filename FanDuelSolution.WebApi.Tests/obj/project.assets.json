@@ -7058,11 +7058,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\7. Programming\\Projects\\FanDuelSolution.WebApi\\FanDuelSolution.WebApi.Tests\\FanDuelSolution.WebApi.Tests.csproj",
+      "projectUniqueName": "D:\\7. Programming\\Projects\\FanDuelSolution\\FanDuelSolution.WebApi.Tests\\FanDuelSolution.WebApi.Tests.csproj",
       "projectName": "FanDuelSolution.WebApi.Tests",
-      "projectPath": "D:\\7. Programming\\Projects\\FanDuelSolution.WebApi\\FanDuelSolution.WebApi.Tests\\FanDuelSolution.WebApi.Tests.csproj",
+      "projectPath": "D:\\7. Programming\\Projects\\FanDuelSolution\\FanDuelSolution.WebApi.Tests\\FanDuelSolution.WebApi.Tests.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\7. Programming\\Projects\\FanDuelSolution.WebApi\\FanDuelSolution.WebApi.Tests\\obj\\",
+      "outputPath": "D:\\7. Programming\\Projects\\FanDuelSolution\\FanDuelSolution.WebApi.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7083,8 +7083,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\7. Programming\\Projects\\FanDuelSolution.WebApi\\FanDuelSolution.WebApi\\FanDuelSolution.WebApi.csproj": {
-              "projectPath": "D:\\7. Programming\\Projects\\FanDuelSolution.WebApi\\FanDuelSolution.WebApi\\FanDuelSolution.WebApi.csproj"
+            "D:\\7. Programming\\Projects\\FanDuelSolution\\FanDuelSolution.WebApi\\FanDuelSolution.WebApi.csproj": {
+              "projectPath": "D:\\7. Programming\\Projects\\FanDuelSolution\\FanDuelSolution.WebApi\\FanDuelSolution.WebApi.csproj"
             }
           }
         }

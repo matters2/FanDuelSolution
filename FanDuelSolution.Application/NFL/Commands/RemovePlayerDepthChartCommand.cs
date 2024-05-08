@@ -7,7 +7,6 @@ namespace FanDuelSolution.Application.NFL.Commands;
 
 public class RemovePlayerDepthChartCommand : IRequest<List<Player>>
 {
-    public string Position { get; set; } = string.Empty;
     public Player Player { get; set; } = new();
 }
 
@@ -28,7 +27,7 @@ public class RemovePlayerDepthChartCommandHandler : IRequestHandler<RemovePlayer
 
         try
         {
-            result = _playerRepository.RemovePlayerFromDepthChart(command.Position, command.Player);
+            result = _playerRepository.RemovePlayerFromDepthChart(command.Player);
         }
         catch (Exception ex)
         {

@@ -7,7 +7,6 @@ namespace FanDuelSolution.Application.NFL.Queries;
 
 public class GetPlayerBackupsFromDepthChartQuery : IRequest<List<Player>>
 {
-    public string Position { get; set; } = string.Empty;
     public Player Player { get; set; } = new();
 }
 
@@ -28,7 +27,7 @@ public class GetPlayerBackupsFromDepthChartQueryHandler : IRequestHandler<GetPla
 
         try
         {
-            result = _playerRepository.GetBackups(query.Position, query.Player);
+            result = _playerRepository.GetBackups(query.Player);
         }
         catch (Exception ex)
         {

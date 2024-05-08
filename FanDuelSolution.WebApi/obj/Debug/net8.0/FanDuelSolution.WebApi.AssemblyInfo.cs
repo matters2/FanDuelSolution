@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FanDuelSolution.WebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+811f5dac2e4ba5e283babd7a45db057262b753e8")]
 [assembly: System.Reflection.AssemblyProductAttribute("FanDuelSolution.WebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FanDuelSolution.WebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
